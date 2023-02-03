@@ -33,7 +33,12 @@ namespace GymnastikForening
 
         public void TilmeldDeltager(Deltager deltager)
         {
-            
+            if(  MaxAntalBørn-AntalTilmeldte() >= deltager.AntalBørn )
+                deltagerListe.Add(deltager);
+            else
+            {
+                Console.WriteLine("Der er desværre ikke plads på holdet!");
+            }
         }
 
         public int AntalTilmeldte()
@@ -48,7 +53,10 @@ namespace GymnastikForening
 
         public Double BeregnTotalPris(int antalBørn) //Hvis Deltageren tilmelder en forælder og et barn, så er prisen holdprisen, men efterfølgende børn koster 50% af hold prisen
         {
-            return 0;
+            double totalPris = 0;
+            if (antalBørn>=1)
+                totalPris =  PrisPrDeltager + (antalBørn -1) * (PrisPrDeltager*0.5); 
+            return totalPris;
         }
 
 

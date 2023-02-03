@@ -17,17 +17,36 @@ namespace GymnastikForening
 
         public void TilføjHold(Hold hold) // der må ikke være dubletter
         {
-            holdListe.Add(hold);
+            if (FindHold(hold.HoldId) == null)
+            {
+                holdListe.Add(hold);
+            }
+            else
+            {
+                throw new ArgumentException("Der findes allerede et hold med dette HoldID");
+            }
+           
         }
 
         public Hold FindHold(string holdId)
         {
-            foreach (Hold hold in holdListe)
+            //foreach (Hold hold in holdListe)
+            //{
+            //    if (hold.HoldId == holdId)
+            //        return hold;
+            //}
+            int i = 0;
+            while(i < holdListe.Count)
             {
-                if (hold.HoldId == holdId)
-                    return hold;
+                if (holdListe[i].HoldId== holdId)
+                {
+                    return holdListe[i];
+                    
+                }
+                i++;
             }
-            
+
+
             return null;
         }
 
