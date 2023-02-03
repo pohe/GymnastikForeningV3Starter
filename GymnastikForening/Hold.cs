@@ -33,11 +33,16 @@ namespace GymnastikForening
 
         public void TilmeldDeltager(Deltager deltager)
         {
+            if (deltager.AntalBørn<=0)
+            {
+                throw new ArgumentException("Ulovligt antal børn");
+            }
             if(  MaxAntalBørn-AntalTilmeldte() >= deltager.AntalBørn )
                 deltagerListe.Add(deltager);
             else
             {
-                Console.WriteLine("Der er desværre ikke plads på holdet!");
+                throw new FuldtHoldException("Der er desværre ikke plads på holdet!");
+                //Console.WriteLine("Der er desværre ikke plads på holdet!");
             }
         }
 

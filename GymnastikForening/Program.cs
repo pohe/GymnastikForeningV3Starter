@@ -30,9 +30,28 @@ Console.WriteLine(holdKatalog); //udskriving vha. ToString metode
 
 
 Deltager d1 = new Deltager("Poul Henriksen", "Vej 123", 2);
-Deltager d2 = new Deltager("Charlotte Heegaard", "Gade 321", 2);
-h1.TilmeldDeltager(d1);
-h1.TilmeldDeltager(d2);
+Deltager d2 = new Deltager("Charlotte Heegaard", "Gade 321", -1);
+try
+{
+    h1.TilmeldDeltager(d1);
+    h1.TilmeldDeltager(d2);
+}
+catch(FuldtHoldException fex)
+{
+    Console.WriteLine(fex.Message);
+}
+catch(ArgumentException aex)
+{
+    Console.WriteLine(aex.Message + " argumentexception");
+}
+catch(Exception exp)
+{
+    Console.WriteLine(exp.Message);
+}
+finally
+{
+    Console.WriteLine("Denne del udføres altid");
+}
 
 Console.WriteLine($"Prisen for 3 børn {h1.BeregnTotalPris(3)} ");
 Console.WriteLine($"Prisen for 1 børn {h1.BeregnTotalPris(1)} ");
